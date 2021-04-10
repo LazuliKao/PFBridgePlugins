@@ -1,0 +1,14 @@
+{
+  "name": "pfbridge-plugins",
+  "version": "0.0.1",
+  "description": "PFBridgePlugins",
+  "author": {
+    "name": "littlegao233"
+  },
+  "scripts": {
+    "build": "tsc --build",
+    "clean": "tsc --build --clean" 
+  },
+  "devDependencies": { 
+  }
+}
