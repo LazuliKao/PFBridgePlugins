@@ -1,5 +1,3 @@
 /// <reference path="./PFBridgeCore/index.ts" />
-
-
-
-System.IO.File.name
+const a=System.IO
+a.File.WriteAllText("aa.json","",System.Text.Encoding.UTF8)
