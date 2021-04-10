@@ -38,9 +38,6 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="PFBridgeCore\index.d.ts" />
-    <TypeScriptCompile Include="PFBridgeCore\index.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
     <TypeScriptCompile Include="PFBridgeCore\System.d.ts" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
