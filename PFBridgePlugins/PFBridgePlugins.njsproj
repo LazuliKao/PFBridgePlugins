@@ -30,6 +30,9 @@
   <ItemGroup>
     <None Include="bind.ts" />
     <Content Include="package.json" />
+    <Content Include="PFBridgeCore\module.d.ts">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="README.md" />
     <Content Include="tsconfig.json" />
   </ItemGroup>
