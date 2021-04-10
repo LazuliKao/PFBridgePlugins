@@ -1,1 +1,3 @@
-/// <reference path="./System.d.ts" />  
+/// <reference path="./System.d.ts" />
+/// <reference path="./Jint.d.ts" />
+/// <reference path="./module.d.ts" />
