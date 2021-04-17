@@ -10,6 +10,7 @@
     "watch": "tsc -w",
     "clean": "tsc --build --clean"
   },
-  "devDependencies": { 
+  "devDependencies": {
+    "typescript": "^4.2.4"
   }
 }

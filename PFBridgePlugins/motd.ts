@@ -1,23 +1,22 @@
 /// <reference path="./PFBridgeCore/index.d.ts" />
-ModuleInfo.Author = "littlegao233"
-ModuleInfo.Description = "测试"
-ModuleInfo.Version = "0.0.1"
-
+moduleInfo.Author = "littlegao233"
+moduleInfo.Description = "测试"
+moduleInfo.Version = "0.0.1"
 
 
 let sendData = System.Convert.FromBase64String("AQAAAAAAA2oHAP//AP7+/v79/f39EjRWeJx0FrwC/0lw")
-for (let i = 0; i < sendData.length; i++) {
-    const element = sendData[i];
-    const api = importNamespace('PFBridgeCore').APIs.API
-    api.log(element)
-    importNamespace('System').Enum.GetValues(typeof System.Net.Sockets.SocketType).forEach(x => {
-        api.log(x)
+const api = importNamespace('PFBridgeCore').APIs.API
+let client = importNamespace("PFBridgeCore.Utils").Net.Sockets.Socket.
+    CreateSocket(System.Net.Sockets.SocketType.Dgram
+        , System.Net.Sockets.ProtocolType.Udp
+    );
+    
+let receiveData = [new System.Byte()]
 
-    });
-
-}
-let client = new System.Net.Sockets.Socket(System.Net.Sockets.SocketType.Dgram, System.Net.Sockets.ProtocolType.Udp);
-let receiveData = new System.Byte[256];
+const events=importNamespace(Namespaces.Core).APIs.Events
+events.IM.OnGroupMessage.Add((e)=>{
+    e.groupId
+})
 /*
             byte[] receiveData = new byte[256];
             Task queryTask = Task.Run(() =>

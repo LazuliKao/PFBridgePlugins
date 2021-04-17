@@ -4,7 +4,8 @@
  */
 declare namespace System {
     class Byte {
-
+        constructor()
+        constructor(size: number)
     }
     /**
      * Contains types that allow reading and writing to files and data streams, and types that provide basic file and directory support.
@@ -81,7 +82,7 @@ declare namespace System {
     }
     namespace Net.Sockets {
         //#region Enum
-        enum SocketType {
+        const    enum SocketType {
             //
             // 摘要:
             //     指定未知的 System.Net.Sockets.Socket 类型。
@@ -117,7 +118,7 @@ declare namespace System {
             //     System.Net.Sockets.SocketType.Seqpacket 类型的 System.Net.Sockets.Socket 与单个对方主机通信，并且在通信开始之前需要建立远程主机连接。
             Seqpacket = 5
         }
-        enum ProtocolType {
+        const    enum ProtocolType {
             //
             // 摘要:
             //     未知的协议。
@@ -219,7 +220,7 @@ declare namespace System {
             //     顺序包交换版本 2 协议。
             SpxII = 1257
         }
-        enum AddressFamily {
+        const      enum AddressFamily {
             //
             // 摘要:
             //     未知的地址族。
@@ -346,9 +347,25 @@ declare namespace System {
             Max = 29
         }
         //#endregion
-        class Socket {
-            constructor(addressFamily: AddressFamily, socketType: SocketType, protocolType: ProtocolType);
-            constructor(socketType: SocketType, protocolType: ProtocolType);
+    }
+    class Type {
+        static GetType(name: string): any
+    }
+    class Enum {
+        static ToObject<T>(t: Type, value: number): T
+        static Parse<T>(t: Type, name: string): T
+    }
+    namespace Collections {
+        namespace Generic {
+            class List<T> {
+                [index: number]: T
+                constructor()
+                constructor(x: any)
+                public get Count(): number
+                Contains(item: T): boolean
+                IndexOf(item: T, index: number): number
+                IndexOf(item: T, index: number, count: number): number
+            }
         }
     }
 }
