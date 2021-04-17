@@ -1,5 +1,5 @@
 "use strict";
-/// <reference path="./PFBridgeCore/index.d.ts" />
+/// <reference path="../PFBridgeCore/index.d.ts" />
 moduleInfo.Author = "littlegao233";
 moduleInfo.Description = "测试";
 moduleInfo.Version = "0.0.1";
@@ -23,7 +23,7 @@ const SocketApi = utils.Net.Sockets.Socket;
 11:19131
 12:
 */
-class name {
+class Info {
     constructor(strs) {
     }
 }
