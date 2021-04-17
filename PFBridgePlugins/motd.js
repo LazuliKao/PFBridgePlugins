@@ -8,6 +8,12 @@ const api = importNamespace('PFBridgeCore').APIs.API;
 let client = importNamespace("PFBridgeCore.Utils").Net.Sockets.Socket.
     CreateSocket(2 /* Dgram */, 17 /* Udp */);
 let receiveData = [new System.Byte()];
+const events = importNamespace("PFBridgeCore" /* Core */).APIs.Events;
+events.IM.OnGroupMessage.Add((e) => {
+    const a = e.groupId;
+});
+events.MC.Chat.Add((e) => {
+});
 /*
             byte[] receiveData = new byte[256];
             Task queryTask = Task.Run(() =>

@@ -10,12 +10,15 @@ let client = importNamespace("PFBridgeCore.Utils").Net.Sockets.Socket.
     CreateSocket(System.Net.Sockets.SocketType.Dgram
         , System.Net.Sockets.ProtocolType.Udp
     );
-    
+
 let receiveData = [new System.Byte()]
 
-const events=importNamespace(Namespaces.Core).APIs.Events
-events.IM.OnGroupMessage.Add((e)=>{
-    e.groupId
+const events = importNamespace(Namespaces.Core).APIs.Events
+events.IM.OnGroupMessage.Add((e) => {
+  const a=  e.groupId
+})
+events.MC.Chat.Add((e)=>{
+    
 })
 /*
             byte[] receiveData = new byte[256];

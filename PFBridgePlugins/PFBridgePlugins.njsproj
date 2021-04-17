@@ -33,6 +33,9 @@
     <Content Include="PFBridgeCore\module.d.ts">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="PFBridgeCore\Utils.d.ts">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="README.md" />
     <Content Include="tsconfig.json" />
   </ItemGroup>
@@ -43,8 +46,11 @@
     <TypeScriptCompile Include="motd.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="PFBridgeCore\APIs.d.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="PFBridgeCore\index.d.ts" />
-    <TypeScriptCompile Include="PFBridgeCore\Jint.d.ts">
+    <TypeScriptCompile Include="PFBridgeCore\Engine.d.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="PFBridgeCore\System.d.ts" />
