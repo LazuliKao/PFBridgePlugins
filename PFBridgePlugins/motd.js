@@ -3,31 +3,47 @@
 moduleInfo.Author = "littlegao233";
 moduleInfo.Description = "测试";
 moduleInfo.Version = "0.0.1";
-let sendData = System.Convert.FromBase64String("AQAAAAAAA2oHAP//AP7+/v79/f39EjRWeJx0FrwC/0lw");
-const api = importNamespace('PFBridgeCore').APIs.API;
-let client = importNamespace("PFBridgeCore.Utils").Net.Sockets.Socket.
-    CreateSocket(2 /* Dgram */, 17 /* Udp */);
-let receiveData = [new System.Byte()];
-const events = importNamespace("PFBridgeCore" /* Core */).APIs.Events;
-events.IM.OnGroupMessage.Add((e) => {
-    const a = e.groupId;
-});
-events.MC.Chat.Add((e) => {
-});
+const sendData = System.Convert.FromBase64String("AQAAAAAAA2oHAP//AP7+/v79/f39EjRWeJx0FrwC/0lw");
+const apis = importNamespace("PFBridgeCore" /* Core */).APIs;
+const api = apis.API;
+const utils = importNamespace("PFBridgeCore.Utils" /* Utils */);
+const SocketApi = utils.Net.Sockets.Socket;
 /*
-            byte[] receiveData = new byte[256];
-            Task queryTask = Task.Run(() =>
-            {
-                try
-                {
-                    client.SendTo(sendData, new IPEndPoint(IPAddress.TryParse(address, out IPAddress ipAddress) ? ipAddress : Dns.GetHostAddresses(address).First(), port));
-                    client.Receive(receiveData, receiveData.Length, SocketFlags.None);
-                }
-                catch (Exception) { }
-            }
-            );
-            queryTask.Wait(TimeSpan.FromSeconds(10));
-            if (!queryTask.IsCompleted || queryTask.IsFaulted) { throw new ArgumentNullException("Query Failed", "Unable to connect to the server!"); }
-            queryTask.Dispose();
-            int i = 0;
-*/ 
+0:MCPE
+1:Dedicated Server
+2:431
+3:1.16.220
+4:0
+5:10
+6:9761407514957423030
+7:Bedrock level
+8:Survival
+9:1
+10:19130
+11:19131
+12:
+*/
+class name {
+    constructor(strs) {
+    }
+}
+/**
+ * Motd协议查询服务器信息
+ * @param ip IP地址
+ * @param port 端口
+ */
+function MotdBE(ip, port) {
+    let client = SocketApi.CreateSocket(2 /* Dgram */, 17 /* Udp */);
+    SocketApi.SendData(client, sendData, ip, port);
+    const receive = SocketApi.ReceiveData(client, 0, 256, 0 /* None */).slice(35);
+    const strs = System.Text.Encoding.UTF8.GetString(receive).split(';');
+    for (let i = 0; i < strs.length; i++) {
+        const element = strs[i];
+        api.Log(i + ":" + element);
+    }
+}
+const ta = System.Threading.Tasks.Task;
+ta.Delay(1000).ContinueWith(() => {
+    MotdBE("127.0.0.1", 19130);
+    api.Log("test");
+});

@@ -8,9 +8,9 @@ declare namespace System {
         constructor(size: number)
     }
     /**
-     * Contains types that allow reading and writing to files and data streams, and types that provide basic file and directory support.
-     * 包含允许读写文件和数据流的类型以及提供基本文件和目录支持的类型。
-     */
+   * Contains types that allow reading and writing to files and data streams, and types that provide basic file and directory support.
+   * 包含允许读写文件和数据流的类型以及提供基本文件和目录支持的类型。
+   */
     namespace IO {
         /**
          * Provides static methods for the creation, copying, deletion, moving, and opening of a single file, and aids in the creation of System.IO.FileStream objects.
@@ -56,9 +56,9 @@ declare namespace System {
         }
     }
     /**
-     * Contains classes that represent ASCII and Unicode character encodings; abstract base classes for converting blocks of characters to and from blocks of bytes; and a helper class that manipulates and formats String objects without creating intermediate instances of String.
-     * 包含表示 ASCII 和 Unicode 字符编码的类；用于字符块和字节块相互转换的抽象基类；以及无需创建 String 的中间实例即可操作 String 对象并设置其格式的帮助程序类。
-     */
+   * Contains classes that represent ASCII and Unicode character encodings; abstract base classes for converting blocks of characters to and from blocks of bytes; and a helper class that manipulates and formats String objects without creating intermediate instances of String.
+   * 包含表示 ASCII 和 Unicode 字符编码的类；用于字符块和字节块相互转换的抽象基类；以及无需创建 String 的中间实例即可操作 String 对象并设置其格式的帮助程序类。
+   */
     namespace Text {
         abstract class Encoding {
             static ASCII: Encoding
@@ -68,285 +68,313 @@ declare namespace System {
             static UTF8: Encoding
             static Default: Encoding
             static BigEndianUnicode: Encoding
+            GetBytes(s: string): Byte[] | number[]
+            GetString(s: Byte[] | number[]): string
         }
-        //    class ASCIIEncoding extends Encoding { }
-        //    class UnicodeEncoding extends Encoding { }
-        //    class UTF32Encoding extends Encoding { }
-        //    class UTF7Encoding extends Encoding { }
-        //    class UTF8Encoding extends Encoding { }
+        //  class ASCIIEncoding extends Encoding { }
+        //  class UnicodeEncoding extends Encoding { }
+        //  class UTF32Encoding extends Encoding { }
+        //  class UTF7Encoding extends Encoding { }
+        //  class UTF8Encoding extends Encoding { }
     }
 
     module Convert {
-        function FromBase64String(s: string): Byte[]
-        function ToBase64String(inArray: Byte[]): string
+        function FromBase64String(s: string): Byte[] | number[]
+        function ToBase64String(inArray: Byte[] | number[]): string
     }
     namespace Net.Sockets {
         //#region Enum
-        const    enum SocketType {
-            //
-            // 摘要:
-            //     指定未知的 System.Net.Sockets.Socket 类型。
+        const enum SocketType {
+            /** 
+             * 指定未知的 System.Net.Sockets.Socket 类型。
+             */
             Unknown = -1,
-            //
-            // 摘要:
-            //     支持可靠、双向、基于连接的字节流，而不重复数据，也不保留边界。 此类型的 System.Net.Sockets.Socket 与单个对方主机通信，并且在通信开始之前需要建立远程主机连接。
-            //     System.Net.Sockets.SocketType.Stream 使用传输控制协议 (ProtocolType.System.Net.Sockets.ProtocolType.Tcp)
-            //     和 AddressFamily。System.Net.Sockets.AddressFamily.InterNetwork 地址族。
+            /** 
+            * 支持可靠、双向、基于连接的字节流，而不重复数据，也不保留边界。 此类型的 System.Net.Sockets.Socket 与单个对方主机通信，并且在通信开始之前需要建立远程主机连接。
+            * System.Net.Sockets.SocketType.Stream 使用传输控制协议 (ProtocolType.System.Net.Sockets.ProtocolType.Tcp)
+            * 和 AddressFamily。System.Net.Sockets.AddressFamily.InterNetwork 地址族。
+            */
             Stream = 1,
-            //
-            // 摘要:
-            //     支持数据报，即最大长度固定（通常很小）的无连接、不可靠消息。 消息可能会丢失或重复并可能在到达时不按顺序排列。 System.Net.Sockets.Socket
-            //     类型的 System.Net.Sockets.SocketType.Dgram 在发送和接收数据之前不需要任何连接，并且可以与多个对方主机进行通信。 System.Net.Sockets.SocketType.Dgram
-            //     使用数据报协议 (ProtocolType.System.Net.Sockets.ProtocolType.Udp) 和 AddressFamily.System.Net.Sockets.AddressFamily.InterNetwork
-            //     地址族。
+            /** 
+            * 支持数据报，即最大长度固定（通常很小）的无连接、不可靠消息。 消息可能会丢失或重复并可能在到达时不按顺序排列。 System.Net.Sockets.Socket
+            * 类型的 System.Net.Sockets.SocketType.Dgram 在发送和接收数据之前不需要任何连接，并且可以与多个对方主机进行通信。 System.Net.Sockets.SocketType.Dgram
+            * 使用数据报协议 (ProtocolType.System.Net.Sockets.ProtocolType.Udp) 和 AddressFamily.System.Net.Sockets.AddressFamily.InterNetwork
+            * 地址族。
+             */
             Dgram = 2,
-            //
-            // 摘要:
-            //     支持对基础传输协议的访问。 通过使用 System.Net.Sockets.SocketType.Raw，可以使用 Internet 控制消息协议 (ProtocolType.System.Net.Sockets.ProtocolType.Icmp)
-            //     和 Internet 组管理协议 (ProtocolType.System.Net.Sockets.ProtocolType.Igmp) 这样的协议来进行通信。
-            //     在发送时，您的应用程序必须提供完整的 IP 标头。 所接收的数据报在返回时会保持其 IP 标头和选项不变。
+            /** 
+            * 支持对基础传输协议的访问。 通过使用 System.Net.Sockets.SocketType.Raw，可以使用 Internet 控制消息协议 (ProtocolType.System.Net.Sockets.ProtocolType.Icmp)
+            * 和 Internet 组管理协议 (ProtocolType.System.Net.Sockets.ProtocolType.Igmp) 这样的协议来进行通信。
+            * 在发送时，您的应用程序必须提供完整的 IP 标头。 所接收的数据报在返回时会保持其 IP 标头和选项不变。
+             */
             Raw = 3,
-            //
-            // 摘要:
-            //     支持无连接、面向消息、以可靠方式发送的消息，并保留数据中的消息边界。 RDM（以可靠方式发送的消息）消息会依次到达，不会重复。 此外，如果消息丢失，将会通知发送方。
-            //     如果使用 System.Net.Sockets.SocketType.Rdm 初始化 System.Net.Sockets.Socket，则在发送和接收数据之前无需建立远程主机连接。
-            //     利用 System.Net.Sockets.SocketType.Rdm，您可以与多个对方主机进行通信。
+            /** 
+            * 支持无连接、面向消息、以可靠方式发送的消息，并保留数据中的消息边界。 RDM（以可靠方式发送的消息）消息会依次到达，不会重复。 此外，如果消息丢失，将会通知发送方。
+            * 如果使用 System.Net.Sockets.SocketType.Rdm 初始化 System.Net.Sockets.Socket，则在发送和接收数据之前无需建立远程主机连接。
+            * 利用 System.Net.Sockets.SocketType.Rdm，您可以与多个对方主机进行通信。
+            */
             Rdm = 4,
-            //
-            // 摘要:
-            //     在网络上提供排序字节流的面向连接且可靠的双向传输。 System.Net.Sockets.SocketType.Seqpacket 不重复数据，它在数据流中保留边界。
-            //     System.Net.Sockets.SocketType.Seqpacket 类型的 System.Net.Sockets.Socket 与单个对方主机通信，并且在通信开始之前需要建立远程主机连接。
+            /** 
+            * 在网络上提供排序字节流的面向连接且可靠的双向传输。 System.Net.Sockets.SocketType.Seqpacket 不重复数据，它在数据流中保留边界。
+            * System.Net.Sockets.SocketType.Seqpacket 类型的 System.Net.Sockets.Socket 与单个对方主机通信，并且在通信开始之前需要建立远程主机连接。
+             */
             Seqpacket = 5
         }
-        const    enum ProtocolType {
-            //
-            // 摘要:
-            //     未知的协议。
+        const enum ProtocolType {
+            /** 
+            * 未知的协议。
+            */
             Unknown = -1,
-            //
-            // 摘要:
-            //     Internet 协议。
+            /** 
+            * Internet 协议。
+            */
             IP = 0,
-            //
-            // 摘要:
-            //     IPv6 逐跳选项标头。
+            /** 
+            * IPv6 逐跳选项标头。
+            */
             IPv6HopByHopOptions = 0,
-            //
-            // 摘要:
-            //     未指定的协议。
+            /** 
+            * 未指定的协议。
+            */
             Unspecified = 0,
-            //
-            // 摘要:
-            //     Internet 控制消息协议。
+            /** 
+            * Internet 控制消息协议。
+            */
             Icmp = 1,
-            //
-            // 摘要:
-            //     Internet 组管理协议。
+            /** 
+            * Internet 组管理协议。
+            */
             Igmp = 2,
-            //
-            // 摘要:
-            //     网关到网关协议。
+            /** 
+            * 网关到网关协议。
+            */
             Ggp = 3,
-            //
-            // 摘要:
-            //     Internet 协议版本 4。
+            /** 
+            * Internet 协议版本 4。
+            */
             IPv4 = 4,
-            //
-            // 摘要:
-            //     传输控制协议。
+            /** 
+            * 传输控制协议。
+            */
             Tcp = 6,
-            //
-            // 摘要:
-            //     PARC 通用数据包协议。
+            /** 
+            * PARC 通用数据包协议。
+            */
             Pup = 12,
-            //
-            // 摘要:
-            //     用户数据报协议。
+            /** 
+            * 用户数据报协议。
+            */
             Udp = 17,
-            //
-            // 摘要:
-            //     Internet 数据报协议。
+            /** 
+            * Internet 数据报协议。
+            */
             Idp = 22,
-            //
-            // 摘要:
-            //     Internet 协议版本 6 (IPv6)。
+            /** 
+            * Internet 协议版本 6 (IPv6)。
+            */
             IPv6 = 41,
-            //
-            // 摘要:
-            //     IPv6 路由标头。
+            /** 
+            * IPv6 路由标头。
+            */
             IPv6RoutingHeader = 43,
-            //
-            // 摘要:
-            //     IPv6 片段标头。
+            /** 
+            * IPv6 片段标头。
+            */
             IPv6FragmentHeader = 44,
-            //
-            // 摘要:
-            //     IPv6 封装安全负载标头。
+            /** 
+            * IPv6 封装安全负载标头。
+            */
             IPSecEncapsulatingSecurityPayload = 50,
-            //
-            // 摘要:
-            //     IPv6 身份验证标头。 有关详细信息，请参阅 https://www.ietf.org 上的 RFC 2292，第 2.2.1 节。
+            /** 
+            * IPv6 身份验证标头。 有关详细信息，请参阅 https:*www.ietf.org 上的 RFC 2292，第 2.2.1 节。
+            */
             IPSecAuthenticationHeader = 51,
-            //
-            // 摘要:
-            //     IPv6 的 Internet 控制消息协议。
+            /** 
+            * IPv6 的 Internet 控制消息协议。
+            */
             IcmpV6 = 58,
-            //
-            // 摘要:
-            //     IPv6 无下一个标头。
+            /** 
+            * IPv6 无下一个标头。
+            */
             IPv6NoNextHeader = 59,
-            //
-            // 摘要:
-            //     IPv6 目标选项标头。
+            /** 
+            * IPv6 目标选项标头。
+            */
             IPv6DestinationOptions = 60,
-            //
-            // 摘要:
-            //     网络磁盘协议（非正式）。
+            /** 
+            * 网络磁盘协议（非正式）。
+            */
             ND = 77,
-            //
-            // 摘要:
-            //     原始 IP 数据包协议。
+            /** 
+            * 原始 IP 数据包协议。
+            */
             Raw = 255,
-            //
-            // 摘要:
-            //     Internet 数据包交换协议。
+            /** 
+            * Internet 数据包交换协议。
+            */
             Ipx = 1000,
-            //
-            // 摘要:
-            //     顺序包交换协议。
+            /** 
+            * 顺序包交换协议。
+            */
             Spx = 1256,
-            //
-            // 摘要:
-            //     顺序包交换版本 2 协议。
+            /** 
+            * 顺序包交换版本 2 协议。
+            */
             SpxII = 1257
         }
-        const      enum AddressFamily {
-            //
-            // 摘要:
-            //     未知的地址族。
+        const enum AddressFamily {
+            /** 
+            * 未知的地址族。
+            */
             Unknown = -1,
-            //
-            // 摘要:
-            //     未指定的地址族。
+            /** 
+            * 未指定的地址族。
+            */
             Unspecified = 0,
-            //
-            // 摘要:
-            //     Unix 本地到主机地址。
+            /** 
+            * Unix 本地到主机地址。
+            */
             Unix = 1,
-            //
-            // 摘要:
-            //     IP 版本 4 的地址。
+            /** 
+            * IP 版本 4 的地址。
+            */
             InterNetwork = 2,
-            //
-            // 摘要:
-            //     ARPANET IMP 地址。
+            /** 
+            * ARPANET IMP 地址。
+            */
             ImpLink = 3,
-            //
-            // 摘要:
-            //     PUP 协议的地址。
+            /** 
+            * PUP 协议的地址。
+            */
             Pup = 4,
-            //
-            // 摘要:
-            //     MIT CHAOS 协议的地址。
+            /** 
+            * MIT CHAOS 协议的地址。
+            */
             Chaos = 5,
-            //
-            // 摘要:
-            //     Xerox NS 协议的地址。
+            /** 
+            * Xerox NS 协议的地址。
+            */
             NS = 6,
-            //
-            // 摘要:
-            //     IPX 或 SPX 地址。
+            /** 
+            * IPX 或 SPX 地址。
+            */
             Ipx = 6,
-            //
-            // 摘要:
-            //     ISO 协议的地址。
+            /** 
+            * ISO 协议的地址。
+            */
             Iso = 7,
-            //
-            // 摘要:
-            //     OSI 协议的地址。
+            /** 
+            * OSI 协议的地址。
+            */
             Osi = 7,
-            //
-            // 摘要:
-            //     欧洲计算机制造商协会 (ECMA) 地址。
+            /** 
+            * 欧洲计算机制造商协会 (ECMA) 地址。
+            */
             Ecma = 8,
-            //
-            // 摘要:
-            //     Datakit 协议的地址。
+            /** 
+            * Datakit 协议的地址。
+            */
             DataKit = 9,
-            //
-            // 摘要:
-            //     CCITT 协议（如 X.25）的地址。
+            /** 
+            * CCITT 协议（如 X.25）的地址。
+            */
             Ccitt = 10,
-            //
-            // 摘要:
-            //     IBM SNA 地址。
+            /** 
+            * IBM SNA 地址。
+            */
             Sna = 11,
-            //
-            // 摘要:
-            //     DECnet 地址。
+            /** 
+            * DECnet 地址。
+            */
             DecNet = 12,
-            //
-            // 摘要:
-            //     直接数据链接接口地址。
+            /** 
+            * 直接数据链接接口地址。
+            */
             DataLink = 13,
-            //
-            // 摘要:
-            //     LAT 地址。
+            /** 
+            * LAT 地址。
+            */
             Lat = 14,
-            //
-            // 摘要:
-            //     NSC Hyperchannel 地址。
+            /** 
+            * NSC Hyperchannel 地址。
+            */
             HyperChannel = 15,
-            //
-            // 摘要:
-            //     AppleTalk 地址。
+            /** 
+            * AppleTalk 地址。
+            */
             AppleTalk = 16,
-            //
-            // 摘要:
-            //     NetBios 地址。
+            /** 
+            * NetBios 地址。
+            */
             NetBios = 17,
-            //
-            // 摘要:
-            //     VoiceView 地址。
+            /** 
+            * VoiceView 地址。
+            */
             VoiceView = 18,
-            //
-            // 摘要:
-            //     FireFox 地址。
+            /** 
+            * FireFox 地址。
+            */
             FireFox = 19,
-            //
-            // 摘要:
-            //     Banyan 地址。
+            /** 
+            * Banyan 地址。
+            */
             Banyan = 21,
-            //
-            // 摘要:
-            //     本机 ATM 服务地址。
+            /** 
+            * 本机 ATM 服务地址。
+            */
             Atm = 22,
-            //
-            // 摘要:
-            //     IP 版本 6 的地址。
+            /** 
+            * IP 版本 6 的地址。
+            */
             InterNetworkV6 = 23,
-            //
-            // 摘要:
-            //     Microsoft 群集产品的地址。
+            /** 
+            * Microsoft 群集产品的地址。
+            */
             Cluster = 24,
-            //
-            // 摘要:
-            //     IEEE 1284.4 工作组地址。
+            /** 
+            * IEEE 1284.4 工作组地址。
+            */
             Ieee12844 = 25,
-            //
-            // 摘要:
-            //     IrDA 地址。
+            /** 
+            * IrDA 地址。
+            */
             Irda = 26,
-            //
-            // 摘要:
-            //     支持网络设计器 OSI 网关的协议的地址。
+            /** 
+            * 支持网络设计器 OSI 网关的协议的地址。
+            */
             NetworkDesigners = 28,
-            //
-            // 摘要:
-            //     MAX 地址。
+            /** 
+            * MAX 地址。
+            */
             Max = 29
         }
+        /** 指定套接字发送和接收行为。 */
+        const enum SocketFlags {
+            /** 不对此调用使用任何标志。 */
+            None = 0,
+            /** 处理带外数据。 */
+            OutOfBand = 1,
+            /** 快速查看传入消息。 */
+            Peek = 2,
+            /** 不使用路由表进行发送。 */
+            DontRoute = 4,
+            /** 提供用于发送和接收数据的 WSABUF 结构数的标准值。 .NET Framework 4.5 上不使用或支持此值。 */
+            MaxIOVectorLength = 16,
+            /** 消息太大，无法放入指定的缓冲区，并且已被截断。 */
+            Truncated = 256,
+            /** 指示控制数据无法放入 64 KB 的内部缓冲区且已被截断。 */
+            ControlDataTruncated = 512,
+            /** 指示广播数据包。 */
+            Broadcast = 1024,
+            /** 指示多播数据包。 */
+            Multicast = 2048,
+            /** 部分发送或接收消息。 */
+            Partial = 32768
+        }
         //#endregion
+        class Socket {
+
+        }
     }
     class Type {
         static GetType(name: string): any
@@ -368,5 +396,74 @@ declare namespace System {
             }
         }
     }
+    namespace Threading {
+        namespace Tasks {
+            class Task {
+                /**
+                 * 创建一个在指定的时间间隔后完成的可取消任务。
+                 * @param millisecondsDelay 在完成返回的任务前要等待的毫秒数；如果无限期等待，则为 -1。
+                 */
+                static Delay(millisecondsDelay: number): Task
+                /**
+                 * 将在线程池上运行的指定工作排队，并返回代表该工作的 System.Threading.Tasks.Task 对象。
+                 * @param act 以异步方式执行的函数。
+                 */
+                static Run(action: (() => void)): Task
+                /**
+                 * 等待提供的所有 System.Threading.Tasks.Task 对象完成执行过程。
+                 * @param tasks 要等待的 System.Threading.Tasks.Task 实例的数组。
+                 */
+                static WaitAll(...tasks: (Task | Task[])[]): void
+                /**
+                * 等待提供的任一 System.Threading.Tasks.Task 对象完成执行过程。
+                * @param tasks 要等待的 System.Threading.Tasks.Task 实例的数组。
+                */
+                static WaitAny(...tasks: (Task | Task[])[]): void
+                /**
+                 * 创建一个在目标 System.Threading.Tasks.Task 完成时异步执行的延续任务。
+                 * @param continuationAction 在 System.Threading.Tasks.Task 完成时要运行的操作。 在运行时，委托将作为一个自变量传递给完成的任务。
+                 */
+                ContinueWith(continuationAction: (() => void)): Task
+                /**
+                 * 等待 System.Threading.Tasks.Task 在指定的毫秒数内完成执行。
+                 * @param millisecondsTimeout 等待的毫秒数，或为 System.Threading.Timeout.Infinite (-1)，表示无限期等待。
+                 */
+                Wait(millisecondsTimeout: number): boolean
+                /** 
+                 * 释放 System.Threading.Tasks.Task 类的当前实例所使用的所有资源。
+                 */
+                Dispose(): void
+            }
+        }
+        class Thread {
+            constructor(start: (() => void))
+            constructor(start: (() => void), maxStackSize: number)
+            constructor(start: ((obj: any) => void))
+            constructor(start: ((obj: any) => void), maxStackSize: number)
+            public get ApartmentState(): ApartmentState
+            public set ApartmentState(v: ApartmentState)
+            /**
+             * 将当前线程挂起指定的毫秒数。
+             * @param millisecondsTimeout 挂起线程的毫秒数。 如果 millisecondsTimeout 参数的值为零，则该线程会将其时间片的剩余部分让给任何已经准备好运行的、具有同等优先级的线程。如果没有其他已经准备好运行的、具有同等优先级的线程，则不会挂起当前线程的执行。
+             */
+            Sleep(millisecondsTimeout: number): void
+            /**
+             * 导致操作系统将当前实例的状态更改为 System.Threading.ThreadState.Running。
+             */
+            Start():void
+            public static get CurrentThread(): Thread
+
+            SetApartmentState(state: ApartmentState):void
+        }
+        const enum ApartmentState {
+            /** System.Threading.Thread 将创建并进入一个单线程单元。 */
+            STA = 0,
+            /** System.Threading.Thread 将创建并进入一个多线程单元。*/
+            MTA = 1,
+            /** 尚未设置 System.Threading.Thread.ApartmentState 属性。*/
+            Unknown = 2
+        }
+    }
 }
+
 //declare const System: typeof SystemA;
