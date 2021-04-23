@@ -1,4 +1,4 @@
-/// <reference path="../PFBridgeCore/index.d.ts" />
+/// <reference types="PFBridgeCore" />
 let t = new System.Threading.Thread(() => {
 
 })
