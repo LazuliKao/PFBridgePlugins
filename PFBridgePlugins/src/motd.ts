@@ -101,13 +101,14 @@ apis.Events.IM.OnGroupMessage.Add(e => {
             if (list.Count === 3) {
                 port = Number(list[2])
             }
-            const address = list[1]
+            let address = list[1]
             try {
                 const li = address.lastIndexOf(":")
                 if (li !== -1) {
                     const ps = Number(address.substr(li + 1))
                     if (ps > 0 && ps <= 65535) {
                         port = ps
+                        address = address.substring(0, li)
                     }
                 }
             } catch (error) { }
@@ -120,10 +121,13 @@ apis.Events.IM.OnGroupMessage.Add(e => {
                         currentPlayer, gameMode, gameVersion,
                         levelName } = detail
                     e.feedback(`查询${address}:${port}成功\
+\n类型：${platform}\
 \n描述:${description}\
 \n在线玩家：${currentPlayer}/${maxPlayer}\
-\n游戏版本${gameVersion}\
-\n协议版本${protocolVersion}`)
+\n游戏版本：${gameVersion}\
+\n协议版本：${protocolVersion}\
+\n游戏模式：${gameMode}\
+\n存档名称：${levelName}`)
                 } else {
                     e.feedback(`查询${address}:${port}失败:${msg}`)
                 }
