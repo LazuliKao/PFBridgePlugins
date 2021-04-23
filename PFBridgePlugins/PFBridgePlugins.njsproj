@@ -28,22 +28,17 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="bind.ts" />
     <Content Include="package.json" />
-    <Content Include="PFBridgeCore\module.d.ts">
-      <SubType>Code</SubType>
-    </Content>
-    <Content Include="PFBridgeCore\Utils.d.ts">
-      <SubType>Code</SubType>
-    </Content>
     <Content Include="README.md" />
     <Content Include="tsconfig.json" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="PFBridgeCore\" />
+    <Folder Include="src\" />
   </ItemGroup>
   <ItemGroup>
-
+    <TypeScriptCompile Include="src\bind.ts" />
+    <TypeScriptCompile Include="src\motd.ts" />
+    <TypeScriptCompile Include="src\test.ts" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
   <ProjectExtensions>
