@@ -28,11 +28,15 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="dist\bind.js" />
+    <Content Include="dist\motd.js" />
+    <Content Include="dist\test.js" />
     <Content Include="package.json" />
     <Content Include="README.md" />
     <Content Include="tsconfig.json" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="dist\" />
     <Folder Include="src\" />
   </ItemGroup>
   <ItemGroup>
